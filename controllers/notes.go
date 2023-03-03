@@ -17,3 +17,7 @@ func (c *NotesController) NotesIndex() {
 	c.Data["notes"] = notes
 	c.TplName = "notes/index.tpl"
 }
+
+func (c *NotesController) NotesNewForm() {
+	c.TplName = "notes/new.tpl"
+}

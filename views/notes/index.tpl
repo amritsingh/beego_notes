@@ -11,5 +11,7 @@
   {{ end }}
 </dl>
 
+<a href="/notes/new">New Note</a>
+
 </body>
 </html>
