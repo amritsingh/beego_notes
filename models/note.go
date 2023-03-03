@@ -30,3 +30,12 @@ func NotesGetAll() *[]*Note {
 	fmt.Println(numRows)
 	return &notes
 }
+
+func NotesCreate(name string, content string) {
+	o := orm.NewOrm()
+	currTime := time.Now()
+	note := Note{Name: name, Content: content, CreatedAt: currTime, UpdatedAt: currTime}
+	id, err := o.Insert(&note)
+	fmt.Println(id)
+	fmt.Println(err)
+}
