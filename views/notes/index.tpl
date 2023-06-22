@@ -6,7 +6,7 @@
 
 <dl>
   {{ range $index, $note := .notes }}
-    <dt>{{ $note.Name }}</dt>
+    <dt><a href="/notes/{{ $note.Id }}">{{ $note.Name }}</a></dt>
     <dd>- {{ $note.Content }}</dd>
   {{ end }}
 </dl>
