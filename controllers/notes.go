@@ -54,3 +54,16 @@ func (c *NotesController) NotesEditPage() {
 	c.Data["note"] = note
 	c.TplName = "notes/edit.tpl"
 }
+
+func (c *NotesController) NotesUpdate() {
+	idStr := c.Ctx.Input.Param(":id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
+	note := models.NotesFind(id)
+	name := c.GetString("name")
+	content := c.GetString("content")
+	note.Update(name, content)
+	c.Redirect("/notes/"+idStr, http.StatusMovedPermanently)
+}

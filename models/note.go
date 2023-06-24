@@ -50,3 +50,10 @@ func NotesFind(id uint64) *Note {
 		return &note
 	}
 }
+
+func (note *Note) Update(name string, content string) {
+	o := orm.NewOrm()
+	note.Name = name
+	note.Content = content
+	o.Update(note)
+}
