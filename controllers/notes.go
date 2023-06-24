@@ -43,3 +43,14 @@ func (c *NotesController) NotesShow() {
 	c.Data["note"] = note
 	c.TplName = "notes/show.tpl"
 }
+
+func (c *NotesController) NotesEditPage() {
+	idStr := c.Ctx.Input.Param(":id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
+	note := models.NotesFind(id)
+	c.Data["note"] = note
+	c.TplName = "notes/edit.tpl"
+}
