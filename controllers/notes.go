@@ -67,3 +67,13 @@ func (c *NotesController) NotesUpdate() {
 	note.Update(name, content)
 	c.Redirect("/notes/"+idStr, http.StatusMovedPermanently)
 }
+
+func (c *NotesController) NotesDelete() {
+	idStr := c.Ctx.Input.Param(":id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
+	models.NotesMarkDelete(id)
+	c.Redirect("/notes", http.StatusSeeOther)
+}
