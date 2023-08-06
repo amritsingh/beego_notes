@@ -75,5 +75,5 @@ func (c *NotesController) NotesDelete() {
 		fmt.Printf("Error: %v", err)
 	}
 	models.NotesMarkDelete(id)
-	c.Redirect("/notes", http.StatusSeeOther)
+	c.Ctx.ResponseWriter.WriteHeader(http.StatusOK)
 }
