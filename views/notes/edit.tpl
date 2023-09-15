@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
-
+{{ template "layouts/header.tpl" .}}
   <h1>Edit Note</h1>
   
   <form action="/notes/{{.note.Id}}" method="POST">
@@ -13,6 +10,4 @@
     <br>
     <input type="submit" value="Submit">
   </form>
-
-</body>
-</html>
+{{ template "layouts/footer.tpl" .}}

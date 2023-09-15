@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
-
+{{ template "layouts/header.tpl" .}}
 <form action="/notes" method="POST">
   <label for="name">Title:</label><br>
   <input type="text" id="name" name="name"><br>
@@ -12,5 +9,4 @@
   <input type="submit" value="Submit">
 </form>
 
-</body>
-</html>
+{{ template "layouts/footer.tpl" .}}

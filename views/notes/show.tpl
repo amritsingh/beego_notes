@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
-
+{{ template "layouts/header.tpl" .}}
   <h2>{{.note.Name}}</h2>
   <p>{{ .note.Content }}</p>
 
@@ -24,5 +21,4 @@
     }
   </script>
 
-</body>
-</html>
+{{ template "layouts/footer.tpl" .}}

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<body>
+{{ template "layouts/header.tpl" .}}
 
 <h2>All notes</h2>
 
@@ -13,5 +11,4 @@
 
 <a href="/notes/new">New Note</a>
 
-</body>
-</html>
+{{ template "layouts/footer.tpl" .}}
