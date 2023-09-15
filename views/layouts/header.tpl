@@ -1,6 +1,6 @@
 {{ define "layouts/header.tpl"}}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 

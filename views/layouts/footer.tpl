@@ -1,3 +1,4 @@
 {{ define "layouts/footer.tpl"}}
-</body>
+  </body>
+</html>
 {{ end }}
