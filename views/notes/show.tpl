@@ -1,24 +1,30 @@
-{{ template "layouts/header.tpl" .}}
-  <h2>{{.note.Name}}</h2>
-  <p>{{ .note.Content }}</p>
+{{ template "layouts/header.tpl" . }}
 
-  <p>
-    <a href="/notes/edit/{{.note.Id}}" role="button">Edit</a>
-    <a href="/notes/{{.note.Id}}" onclick="deleteNote(this)">Delete</a>
-  </p>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ .note.Name }}</h2>
+            <p class="card-text">{{ .note.Content }}</p>
+            <div class="btn-group" role="group" aria-label="Note Actions">
+                <a href="/notes/edit/{{ .note.Id }}" class="btn btn-primary" role="button">Edit</a>
+                <a href="/notes/{{ .note.Id }}" class="btn btn-danger" role="button" onclick="deleteNote(this)">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <script>
+<script>
     function deleteNote(link) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("DELETE", link.href, true);
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          // Redirect the page
-          window.location.replace("/notes");
-        }
-      };
-      xhr.send();
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", link.href, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Redirect the page
+                window.location.replace("/notes");
+            }
+        };
+        xhr.send();
     }
-  </script>
+</script>
 
-{{ template "layouts/footer.tpl" .}}
+{{ template "layouts/footer.tpl" . }}
