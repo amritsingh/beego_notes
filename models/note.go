@@ -16,7 +16,7 @@ type Note struct {
 	DeletedAt time.Time
 }
 
-func (u *Note) TableName() string {
+func (n *Note) TableName() string {
 	return "notes"
 }
 

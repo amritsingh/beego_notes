@@ -20,4 +20,7 @@
 </head>
 
 <body>
+  {{if .alert}}
+    <div class="alert alert-primary" role="alert">{{.alert}}</div>
+  {{end}}
 {{ end }}
