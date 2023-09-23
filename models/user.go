@@ -42,23 +42,3 @@ func UserFind(id uint64) *User {
 	o.QueryTable(new(User)).Filter("id", id).One(&user)
 	return &user
 }
-
-func UserCheck(email string, password string) *User {
-	var user User
-	o := orm.NewOrm()
-	fmt.Println(email)
-	err := o.QueryTable(new(User)).Filter("username", email).One(&user)
-	fmt.Println(err)
-	fmt.Println(user)
-	if user.Id == 0 {
-		return nil
-	}
-
-	match := helpers.CheckPasswordHash(password, user.Password)
-	fmt.Println(match)
-	if match {
-		return &user
-	} else {
-		return nil
-	}
-}
