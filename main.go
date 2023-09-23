@@ -14,7 +14,7 @@ func init() {
 	mysqlDataSource, _ := beego.AppConfig.String("mysqlDataSource")
 	orm.RegisterDataBase("default", "mysql", mysqlDataSource)
 	orm.RegisterModel(new(models.Note))
-
+	orm.RegisterModel(new(models.User))
 }
 
 func main() {
