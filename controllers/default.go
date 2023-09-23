@@ -9,7 +9,7 @@ type MainController struct {
 }
 
 func (c *MainController) Get() {
-	c.Data["Title"] = "Notes App"
-	c.Data["LoggedIn"] = (c.GetSession("user_id") != nil)
+	c.Data["Website"] = "beego.me"
+	c.Data["Email"] = "astaxie@gmail.com"
 	c.TplName = "index.tpl"
 }
