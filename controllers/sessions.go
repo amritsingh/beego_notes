@@ -48,23 +48,3 @@ func (c *SessionsController) Signup() {
 		c.Redirect("/notes", http.StatusMovedPermanently)
 	}
 }
-
-func (c *SessionsController) Login() {
-	email := c.GetString("email")
-	password := c.GetString("password")
-	user := models.UserCheck(email, password)
-	if user != nil {
-		// Set session
-		c.SetSession("user_id", user.Id)
-		c.Redirect("/", http.StatusMovedPermanently)
-	} else {
-		c.Data["alert"] = "Email and/or password mismatch!"
-		c.TplName = "sessions/login.tpl"
-	}
-}
-
-func (c *SessionsController) Logout() {
-	// Clear the session
-	c.DelSession("user_id")
-	c.Redirect("/login", http.StatusMovedPermanently)
-}
