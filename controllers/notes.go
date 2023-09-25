@@ -30,7 +30,7 @@ func (c *NotesController) NotesCreate() {
 	content := c.GetString("content")
 
 	models.NotesCreate(name, content)
-	c.Redirect("/notes", http.StatusMovedPermanently)
+	c.Redirect("/notes", http.StatusTemporaryRedirect)
 }
 
 func (c *NotesController) NotesShow() {
@@ -65,7 +65,7 @@ func (c *NotesController) NotesUpdate() {
 	name := c.GetString("name")
 	content := c.GetString("content")
 	note.Update(name, content)
-	c.Redirect("/notes/"+idStr, http.StatusMovedPermanently)
+	c.Redirect("/notes/"+idStr, http.StatusTemporaryRedirect)
 }
 
 func (c *NotesController) NotesDelete() {

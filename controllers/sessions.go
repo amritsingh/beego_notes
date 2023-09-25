@@ -45,7 +45,7 @@ func (c *SessionsController) Signup() {
 	} else {
 		// Signup successful, set session
 		c.SetSession("user_id", user.Id)
-		c.Redirect("/notes", http.StatusMovedPermanently)
+		c.Redirect("/notes", http.StatusTemporaryRedirect)
 	}
 }
 
@@ -56,7 +56,7 @@ func (c *SessionsController) Login() {
 	if user != nil {
 		// Set session
 		c.SetSession("user_id", user.Id)
-		c.Redirect("/", http.StatusMovedPermanently)
+		c.Redirect("/", http.StatusTemporaryRedirect)
 	} else {
 		c.Data["alert"] = "Email and/or password mismatch!"
 		c.TplName = "sessions/login.tpl"
@@ -66,5 +66,5 @@ func (c *SessionsController) Login() {
 func (c *SessionsController) Logout() {
 	// Clear the session
 	c.DelSession("user_id")
-	c.Redirect("/login", http.StatusMovedPermanently)
+	c.Redirect("/login", http.StatusTemporaryRedirect)
 }
