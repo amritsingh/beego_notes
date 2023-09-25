@@ -28,5 +28,5 @@ func (c *NotesController) NotesCreate() {
 	content := c.GetString("content")
 
 	models.NotesCreate(name, content)
-	c.Redirect("/notes", http.StatusMovedPermanently)
+	c.Redirect("/notes", http.StatusTemporaryRedirect)
 }
