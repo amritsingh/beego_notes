@@ -15,8 +15,9 @@ type NotesController struct {
 }
 
 func (c *NotesController) NotesIndex() {
+	user := GetUserFromSession(&c.Controller)
 	// Get all notes
-	notes := models.NotesGetAll()
+	notes := models.NotesGetAll(user)
 	c.Data["notes"] = notes
 	c.TplName = "notes/index.tpl"
 }
@@ -29,8 +30,8 @@ func (c *NotesController) NotesCreate() {
 	name := c.GetString("name")
 	content := c.GetString("content")
 
-	models.NotesCreate(name, content)
-	c.Redirect("/notes", http.StatusMovedPermanently)
+	models.NotesCreate(GetUserFromSession(&c.Controller), name, content)
+	c.Redirect("/notes", http.StatusTemporaryRedirect)
 }
 
 func (c *NotesController) NotesShow() {
@@ -39,7 +40,7 @@ func (c *NotesController) NotesShow() {
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 	}
-	note := models.NotesFind(id)
+	note := models.NotesFind(GetUserFromSession(&c.Controller), id)
 	c.Data["note"] = note
 	c.TplName = "notes/show.tpl"
 }
@@ -50,7 +51,7 @@ func (c *NotesController) NotesEditPage() {
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 	}
-	note := models.NotesFind(id)
+	note := models.NotesFind(GetUserFromSession(&c.Controller), id)
 	c.Data["note"] = note
 	c.TplName = "notes/edit.tpl"
 }
@@ -61,11 +62,11 @@ func (c *NotesController) NotesUpdate() {
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 	}
-	note := models.NotesFind(id)
+	note := models.NotesFind(GetUserFromSession(&c.Controller), id)
 	name := c.GetString("name")
 	content := c.GetString("content")
 	note.Update(name, content)
-	c.Redirect("/notes/"+idStr, http.StatusMovedPermanently)
+	c.Redirect("/notes/"+idStr, http.StatusTemporaryRedirect)
 }
 
 func (c *NotesController) NotesDelete() {
@@ -74,6 +75,6 @@ func (c *NotesController) NotesDelete() {
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 	}
-	models.NotesMarkDelete(id)
+	models.NotesMarkDelete(GetUserFromSession(&c.Controller), id)
 	c.Ctx.ResponseWriter.WriteHeader(http.StatusOK)
 }

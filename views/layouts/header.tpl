@@ -23,4 +23,13 @@
   {{if .alert}}
     <div class="alert alert-primary" role="alert">{{.alert}}</div>
   {{end}}
+  {{if .LoggedIn}}
+    <div class="container mt-4">
+      <div class="btn-group d-flex flex-row-reverse" role="group">
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn btn-outline-danger">Logout</button>
+        </form>
+      </div>
+    </div>
+  {{end}}
 {{ end }}

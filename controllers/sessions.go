@@ -68,3 +68,8 @@ func (c *SessionsController) Logout() {
 	c.DelSession("user_id")
 	c.Redirect("/login", http.StatusMovedPermanently)
 }
+
+func GetUserFromSession(c *beego.Controller) *models.User {
+	userId := c.GetSession("user_id").(uint64)
+	return models.UserFind(userId)
+}

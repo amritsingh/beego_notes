@@ -2,6 +2,9 @@
     {{ template "layouts/header.tpl" .}}
       <div class="container mt-4">
         <h1>{{.Title}}</h1>
+
+        <h2 class="mb-4"><a href="/notes" class="mb-4">All Note</a></h2>
+
         <p>
             <div class="btn-group" role="group">
                 {{if .LoggedIn}}
