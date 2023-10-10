@@ -3,7 +3,6 @@ package main
 import (
 	"beego_notes/models"
 	_ "beego_notes/routers"
-	"fmt"
 	"net/http"
 
 	"github.com/beego/beego/v2/client/orm"
@@ -14,9 +13,6 @@ import (
 
 var AuthFilter = func(ctx *context.Context) {
 	userID := ctx.Input.Session("user_id")
-	fmt.Println("------------------------------")
-	fmt.Println(userID)
-	fmt.Println("------------------------------")
 	if userID == nil {
 		ctx.Redirect(http.StatusTemporaryRedirect, "/login")
 		return
