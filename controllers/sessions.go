@@ -56,7 +56,7 @@ func (c *SessionsController) Login() {
 	if user != nil {
 		// Set session
 		c.SetSession("user_id", user.Id)
-		c.Redirect("/", http.StatusTemporaryRedirect)
+		c.Redirect("/", http.StatusFound)
 	} else {
 		c.Data["alert"] = "Email and/or password mismatch!"
 		c.TplName = "sessions/login.tpl"
