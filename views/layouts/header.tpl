@@ -20,16 +20,47 @@
 </head>
 
 <body>
-  {{if .alert}}
-    <div class="alert alert-primary" role="alert">{{.alert}}</div>
-  {{end}}
-  {{if .LoggedIn}}
-    <div class="container mt-4">
-      <div class="btn-group d-flex flex-row-reverse" role="group">
-        <form action="/logout" method="POST">
-          <button type="submit" class="btn btn-outline-danger">Logout</button>
-        </form>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #3498db;">
+    <div class="container">
+      <a class="navbar-brand" href="/" style="color: #ffffff;">Notes App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="background-color: #ffffff;"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/notes" style="color: #ffffff;">Notes</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          {{if .username}}
+            <li class="nav-item">
+              <a class="nav-link" style="color: #ffffff;">{{.username}}</a>
+            </li>
+            <li class="nav-item">
+              <form action="/logout" method="POST">
+                <button type="submit" class="btn btn-outline-danger">Logout</button>
+              </form>
+            </li>
+          {{else}}
+            <li class="nav-item">
+              <a class="nav-link" href="/signup" style="color: #ffffff;">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login" style="color: #ffffff;">Login</a>
+            </li>
+          {{end}}
+        </ul>
       </div>
+    </div>
+  </nav>
+
+  {{if .alert}}
+    <div class="container mt-4">
+      <div class="alert alert-primary" role="alert">{{.alert}}</div>
     </div>
   {{end}}
 {{ end }}

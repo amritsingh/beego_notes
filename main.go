@@ -4,6 +4,7 @@ import (
 	"beego_notes/models"
 	_ "beego_notes/routers"
 	"net/http"
+	"strings"
 
 	"github.com/beego/beego/v2/client/orm"
 	web "github.com/beego/beego/v2/server/web"
@@ -14,10 +15,14 @@ import (
 var AuthFilter = func(ctx *context.Context) {
 	userID := ctx.Input.Session("user_id")
 	if userID == nil {
-		ctx.Redirect(http.StatusTemporaryRedirect, "/login")
-		return
+		if strings.HasPrefix(ctx.Input.URI(), "/notes") {
+			ctx.Redirect(http.StatusTemporaryRedirect, "/login")
+			return
+		}
 	} else {
 		ctx.Input.SetData("LoggedIn", true)
+		user := models.UserFind(userID.(uint64))
+		ctx.Input.SetData("username", user.Username)
 	}
 }
 
@@ -28,7 +33,7 @@ func init() {
 	orm.RegisterModel(new(models.Note))
 	orm.RegisterModel(new(models.User))
 
-	web.InsertFilter("/notes/*", web.BeforeRouter, AuthFilter)
+	web.InsertFilter("*", web.BeforeRouter, AuthFilter)
 }
 
 func main() {
