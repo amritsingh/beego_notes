@@ -8,6 +8,10 @@
   <p>
     <a href="/notes/edit/{{.note.Id}}" role="button">Edit</a>
   </p>
+  <p>
+    <a href="/notes/new">New Note</a>
+    <a href="/notes">Notes List</a>
+  </p>
 
 </body>
 </html>
