@@ -9,6 +9,10 @@
                 <a href="/notes/edit/{{ .note.Id }}" class="btn btn-primary" role="button">Edit</a>
                 <a href="/notes/{{ .note.Id }}" class="btn btn-danger" role="button" onclick="deleteNote(this)">Delete</a>
             </div>
+            <div class="btn-group" role="group" aria-label="Notes Nav">
+                <a href="/notes/new" class="btn btn-primary" role="button">New Note</a>
+                <a href="/notes" class="btn btn-info" role="button">Notes List</a>
+            </div>
         </div>
     </div>
 </div>
