@@ -7,6 +7,11 @@
     <a href="/notes/{{.note.Id}}" onclick="deleteNote(this)">Delete</a>
   </p>
 
+  <p>
+    <a href="/notes/new">New Note</a>
+    <a href="/notes">Notes List</a>
+  </p>
+
   <script>
     function deleteNote(link) {
       var xhr = new XMLHttpRequest();
