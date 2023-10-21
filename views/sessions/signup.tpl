@@ -18,6 +18,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+
+      <br/>
+      <a href="/login" class="btn btn-info" role="button">Login</a>
+
     </div>
   {{ template "layouts/footer.tpl" .}}
 {{ end }}
