@@ -30,7 +30,7 @@ func (c *NotesController) NotesCreate() {
 	content := c.GetString("content")
 
 	models.NotesCreate(name, content)
-	c.Redirect("/notes", http.StatusTemporaryRedirect)
+	c.Redirect("/notes", http.StatusFound)
 }
 
 func (c *NotesController) NotesShow() {
