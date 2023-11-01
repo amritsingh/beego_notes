@@ -55,6 +55,7 @@ func (note *Note) Update(name string, content string) {
 	o := orm.NewOrm()
 	note.Name = name
 	note.Content = content
+	note.UpdatedAt = time.Now()
 	o.Update(note)
 }
 
