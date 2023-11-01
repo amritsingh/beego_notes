@@ -65,5 +65,5 @@ func (c *NotesController) NotesUpdate() {
 	name := c.GetString("name")
 	content := c.GetString("content")
 	note.Update(name, content)
-	c.Redirect("/notes/"+idStr, http.StatusTemporaryRedirect)
+	c.Redirect("/notes/"+idStr, http.StatusFound)
 }
