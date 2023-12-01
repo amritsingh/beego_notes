@@ -74,6 +74,6 @@ func (c *NotesController) NotesDelete() {
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 	}
-	models.NotesMarkDelete(id)
+	models.AddDeletionTImestamp(id)
 	c.Ctx.ResponseWriter.WriteHeader(http.StatusOK)
 }

@@ -59,7 +59,7 @@ func (note *Note) Update(name string, content string) {
 	o.Update(note)
 }
 
-func NotesMarkDelete(id uint64) {
+func AddDeletionTImestamp(id uint64) {
 	o := orm.NewOrm()
 	note := NotesFind(id)
 	note.DeletedAt = time.Now()
