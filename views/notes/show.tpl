@@ -7,7 +7,7 @@
             <p class="card-text">{{ .note.Content }}</p>
             <div class="btn-group" role="group" aria-label="Note Actions">
                 <a href="/notes/edit/{{ .note.Id }}" class="btn btn-primary" role="button">Edit</a>
-                <a href="#content" class="skip-link" class="btn btn-danger" role="button" onclick="deleteNote()">Delete</a>
+                <a class="btn btn-danger" role="button" onclick="deleteNote()">Delete</a>
             </div>
             <div class="btn-group" role="group" aria-label="Notes Nav">
                 <a href="/notes/new" class="btn btn-primary" role="button">New Note</a>
