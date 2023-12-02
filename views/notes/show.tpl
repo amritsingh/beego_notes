@@ -4,7 +4,7 @@
 
   <p>
     <a href="/notes/edit/{{.note.Id}}" role="button">Edit</a>
-    <a href="/notes/{{.note.Id}}" onclick="deleteNote(this)">Delete</a>
+    <a href="#content" class="skip-link" onclick="deleteNote()">Delete</a>
   </p>
 
   <p>
@@ -13,9 +13,9 @@
   </p>
 
   <script>
-    function deleteNote(link) {
+    function deleteNote() {
       var xhr = new XMLHttpRequest();
-      xhr.open("DELETE", link.href, true);
+      xhr.open("DELETE", "/notes/{{.note.Id}}", true);
       xhr.onload = function() {
         if (xhr.status === 200) {
           // Redirect the page
