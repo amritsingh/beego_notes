@@ -45,7 +45,7 @@ func (c *SessionsController) Signup() {
 	} else {
 		// Signup successful, set session
 		c.SetSession("user_id", user.Id)
-		c.Redirect("/notes", http.StatusTemporaryRedirect)
+		c.Redirect("/notes", http.StatusSeeOther)
 	}
 }
 
