@@ -6,12 +6,13 @@ import (
 	"time"
 
 	"github.com/beego/beego/v2/client/orm"
+	"golang.org/x/oauth2"
 )
 
 type User struct {
-	Id        uint64 `gorm:"primaryKey"`
-	Username  string `gorm:"size:64"`
-	Password  string `gorm:"size:255"`
+	Id        uint64
+	Username  string
+	Password  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -46,7 +47,6 @@ func UserFind(id uint64) *User {
 func UserCheck(email string, password string) *User {
 	var user User
 	o := orm.NewOrm()
-	fmt.Println(email)
 	err := o.QueryTable(new(User)).Filter("username", email).One(&user)
 	fmt.Println(err)
 	fmt.Println(user)
@@ -61,4 +61,21 @@ func UserCheck(email string, password string) *User {
 	} else {
 		return nil
 	}
+}
+
+func UserUpdateOrCreate(token *oauth2.Token) *User {
+	// Store details in OauthUser table
+	oauthUser := SaveFBOauthDetails(token)
+
+	o := orm.NewOrm()
+	user := User{}
+	o.QueryTable(new(User)).Filter("username", oauthUser.Email).One(&user)
+	if user.Id == 0 {
+		user := User{Username: oauthUser.Email,
+			CreatedAt: time.Now(), UpdatedAt: time.Now()}
+		o.Insert(&user)
+	}
+	// Update the user id in OauthUser
+	oauthUser.UpdateUserID(&user)
+	return (&user)
 }

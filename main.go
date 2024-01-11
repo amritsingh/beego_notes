@@ -32,6 +32,7 @@ func init() {
 	orm.RegisterDataBase("default", "mysql", mysqlDataSource)
 	orm.RegisterModel(new(models.Note))
 	orm.RegisterModel(new(models.User))
+	orm.RegisterModel(new(models.OauthUser))
 
 	web.InsertFilter("*", web.BeforeRouter, AuthFilter)
 }

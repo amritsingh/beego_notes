@@ -12,6 +12,7 @@
                         <button type="submit" class="btn btn-outline-danger">Logout</button>
                     </form>
                 {{else}}
+                    <a class="btn btn-outline-primary" href="{{.FbAuthLink}}" role="button">Login with Facebook</a>
                     <a class="btn btn-outline-primary" href="/login" role="button">Login</a>
                     <a class="btn btn-outline-primary" href="/signup" role="button">Sign Up</a>
                 {{end}}

@@ -22,4 +22,6 @@ func init() {
 	beego.Router("/signup", &controllers.SessionsController{}, "post:Signup")
 	beego.Router("/login", &controllers.SessionsController{}, "post:Login")
 	beego.Router("/logout", &controllers.SessionsController{}, "post:Logout")
+
+	beego.Router("/auth/facebook", &controllers.OauthController{}, "get:FacebookAuth")
 }
