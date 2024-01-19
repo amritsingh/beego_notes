@@ -51,7 +51,6 @@ func SaveFBOauthDetails(token *oauth2.Token) *OauthUser {
 	provider := "Facebook"
 
 	// Get Profile pic
-	// TODO
 	profilePic := getFBProfilePic(uuid, token.AccessToken)
 
 	o := orm.NewOrm()
